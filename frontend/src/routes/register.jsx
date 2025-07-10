@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import PetContext from '../context/petContext';
 import Lottie from 'lottie-react';
 import animalAnimation from '../assets/Animal Sample/A1.json'; // Update path if needed
+const backendUrl = import.meta.env.VITE_API_BASE_URL;
 
 function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -27,10 +28,10 @@ function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://127.0.0.1:5000/api/profile/createuser", formData);
+      await axios.post(`${backendUrl}/api/profile/createuser`, formData);
       await infoGetter();
       await petGetter();
-      handleNavigation(navigate, '/home');
+      handleNavigation(navigate, '/pet');
     } catch (error) {
       console.error("Some Error Occurred!!", error);
     }
@@ -39,7 +40,7 @@ function RegisterPage() {
   useEffect(() => {
     const checkUser = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:5000/api/profile/getuser');
+        const response = await axios.get(`${backendUrl}/api/profile/getuser`);
         if ( response.data && response.data.name) {
           handleNavigation(navigate, '/home');
         }

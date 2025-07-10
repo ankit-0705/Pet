@@ -8,6 +8,7 @@ import RegisterPage from './routes/register';
 import HomePage from "./routes/home";
 import ProfilePage from './routes/profile';
 import PetState from './context/petState'
+import CreatePetPage from "./routes/pet";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
             <Route path='/' element={<RegisterPage/>} />
             <Route path='/home' element={<HomePage/>} />
             <Route path='/profile' element={<ProfilePage/>} />
+            <Route path="/pet" element={<CreatePetPage/>}/>
           </Routes>
         </Router>
       </PetState>

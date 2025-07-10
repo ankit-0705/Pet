@@ -1,6 +1,7 @@
 import PetContext from "./petContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
+const backendUrl = import.meta.env.VITE_API_BASE_URL;
 
 // Animation imports
 import A3Animation from '../assets/Animal Sample/A3.json'; // navigation animation
@@ -16,7 +17,7 @@ const PetState = (props) => {
 
   const infoGetter = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/api/profile/getuser');
+      const response = await axios.get(`${backendUrl}/api/profile/getuser`);
       setProfileInfo(response.data);
     } catch (error) {
       console.error('Some Error Occurred!!');
@@ -25,7 +26,7 @@ const PetState = (props) => {
 
   const petGetter = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/api/pets/fetchpet');
+      const response = await axios.get(`${backendUrl}/api/pets/fetchpet`);
       setPetInfo(response.data);
     } catch (error) {
       console.error(error.message);
@@ -34,7 +35,7 @@ const PetState = (props) => {
 
   const updatePetOnServer = async (updatedStats) => {
     try {
-      await axios.put('http://127.0.0.1:5000/api/pets/updatepet', {
+      await axios.put(`${backendUrl}/api/pets/updatepet`, {
         hunger: updatedStats.hunger,
         happiness: updatedStats.happiness,
         energy: updatedStats.energy
