@@ -19,6 +19,8 @@ dist-ssr/
 .vite/
 .cache/
 
+#Environmental Variables
+.env
 
 # Local config
 *.local
