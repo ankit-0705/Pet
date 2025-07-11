@@ -3,21 +3,11 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 require('dotenv').config();
-const port = process.env.web_Port
+const port = process.env.web_Port || 5000
 
-const allowedOrigins = ['https://pet-rose.vercel.app/','http://localhost:5173']
 
 //Middlewares
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-}));
+app.use(cors({origin:'*',credential:true}));
 app.use(express.json()); 
 
 //Routes
